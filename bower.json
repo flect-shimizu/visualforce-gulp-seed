@@ -1,0 +1,24 @@
+{
+  "name": "visualforce-gulp",
+  "main": "index.js",
+  "version": "0.0.0",
+  "homepage": "https://github.com/jsforce/gulp-jsforce-deploy",
+  "authors": [
+    "清水俊郎 <shimizu@f.flect.co.jp>"
+  ],
+  "license": "MIT",
+  "ignore": [
+    "**/.*",
+    "node_modules",
+    "bower_components",
+    "test",
+    "tests"
+  ],
+  "dependencies": {
+    "d3": "~3.5.6",
+    "c3": "~0.4.10",
+    "angular": "~1.4.3",
+    "jquery": "~2.1.4",
+    "jquery-ui": "~1.11.4"
+  }
+}

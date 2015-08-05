@@ -1,0 +1,59 @@
+{
+  "name": "visualforce-gulp-seed",
+  "version": "0.0.1",
+  "description": "Developing SPA application and Deploy Salesforce package using node-vsualforce-module (use ant tool) ",
+  "main": "gulpfile.js",
+  "keywords": [
+    "salesforce",
+    "salesforce.com",
+    "sfdc",
+    "force.com",
+    "database.com",
+    "gulp",
+    "SPA",
+    "deploy"
+  ],
+  "scripts": {
+    "pretest": "./node_modules/.bin/gulp"
+  },
+  "files": [
+    "gulpfile.js"
+  ],
+  "author": "Toshiro Shimizu <toshilow@gmail.com>",
+  "license": "MIT",
+  "dependencies": {
+    "gulp-util": "^3.0.3",
+    "through2": "^0.6.3"
+  },
+  "devDependencies": {
+    "babel": "^5.8.12",
+    "browser-sync": "^2.8.2",
+    "del": "^1.2.0",
+    "espower-loader": "^0.10.0",
+    "event-stream": "^3.3.1",
+    "gulp": "^3.8.11",
+    "gulp-autoprefixer": "^2.1.0",
+    "gulp-babel": "^5.1.0",
+    "gulp-changed": "^1.1.1",
+    "gulp-concat": "^2.6.0",
+    "gulp-filter": "^3.0.0",
+    "gulp-html-replace": "^1.5.1",
+    "gulp-imagemin": "^2.2.1",
+    "gulp-notify": "^2.2.0",
+    "gulp-rename": "^1.2.2",
+    "gulp-replace": "^0.5.3",
+    "gulp-sass": "^2.0.4",
+    "gulp-sourcemaps": "^1.5.0",
+    "gulp-swig": "^0.7.4",
+    "gulp-zip": "^2.0.2",
+    "intelli-espower-loader": "^0.6.0",
+    "main-bower-files": "^2.9.0",
+    "mocha": "^2.1.0",
+    "node-visualforce-module": "salesforce-demos/node-visualforce-module",
+    "power-assert": "^0.10.2",
+    "readable-stream": "^2.0.2",
+    "replacestream": "^4.0.0",
+    "require-dir": "^0.1.0",
+    "run-sequence": "^1.1.2"
+  }
+}
