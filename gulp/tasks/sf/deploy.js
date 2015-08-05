@@ -6,7 +6,12 @@ var zip = require('gulp-zip');
 var salesforce = require('../../config-sf');
 var visual = require('node-visualforce-module');
 
-gulp.task('deploy', function() {
+gulp.task('deploy-dev', function() {
   var deploy = visual.deploy(salesforce.deploy.development);
+  deploy.execute();
+});
+
+gulp.task('deploy-sand', function() {
+  var deploy = visual.deploy(salesforce.deploy.sandbox);
   deploy.execute();
 });

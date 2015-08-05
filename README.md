@@ -2,6 +2,8 @@
 
 [NOTICE] This project is experiment. Don't use in production environment.
 
+Visualforceでフロントを開発する場合のスタートアッププロジェクトです
+
 ## Precondition (前提条件)
 
 * node >= 0.12
@@ -29,8 +31,9 @@ bower install
 │   ├── pages
 │   └── sf       // Salesforceにデプロイするための成果物
 ├── gulp
-│   ├── config-sf.js// Salesforceにデプロイするための設定情報
-│   ├── config.js   // Gulpタスクを利用するための設定情報
+│   ├── setting.js   // ユーザーがGulpタスクを利用するための設定情報
+│   ├── config-sf.js // Salesforceタスクの設定
+│   ├── config.js    // Gulpタスクの設定
 │   ├── tasks
 │   └── util
 ├── bower.json
@@ -48,12 +51,13 @@ bower install
 ### Add vendor library
 bowerを使って依存ライブラリを追加します
 依存ライブラリはビルド時にvendor.js vendor.cssとして結合されます
+
 ```
 bower install <ライブラリ名> --save
 ```
 
 ### Add page file
-src/pagesにhtmlを追加します。
+src/pagesにhtmlを追加します。ファイル名が直接Visualforceページ名になります
 
 ### Add script file
 src/jsにjsファイルを追加します。
@@ -63,98 +67,83 @@ src/jsにjsファイルを追加します。
 src/cssとimgに各ファイルを追加します。
 Sassを利用する場合は、src/sassディレクトリに.sass .scssファイルを追加します
 
-### config.js
-ビルド時にapp.jsという名前のファイルに結合されるので、スクリプトの読み込み順序を設定。
-```javascript
-  script: {
-    src: [
-      src + '/js/main.js', // 読み込ませたい順に追加
-    ],
-    mock: [
-      src + '/js/mock.js', // app.jsに含まないファイルを追加
-    ],
-    dest: build + '/js',
-    filename: 'app.js'
-  }
-```
-### config-sf.js
-静的リソースの名前を設定します。
-```javascript
-var resourceName = "vfResource" // 静的リソースの名前を指定 
-```
-
-Salesfoce.com環境(以下、SFDC)へAPIアクセスするためのcredentials情報を設定します。
-Sandboxとリトリーブ用も同様に設定します
+### Setup Gulp configuration
 
 ```javascript
-  deploy: {
+
+  sf: {
+    //Salesforceのビルド結果が出力されるディレクトリ
+    sfbuild: build + "/sf",
+    // デプロイする静的リソースの名前
+    resourceName: "vfResource",
+    // apex:pageタグの属性値
+    apexPageOption: {
+      // デフォルト値、すべてのページに適用されます
+      'default': {
+        "docType": "html-5.0",
+        "showHeader": false,
+        "standardStyleSheets": false
+      },
+      // ページごとの設定、デフォルト値より優先されます
+      'topPage': {
+        controller: 'RemoteActionTestController'
+      }
+    },
+    // 開発環境の認証情報
     development: {
       user: '<Your salesforce email address>',
       pass: '<Your salesforce password>',
       token: '<Your salesforce access token>',
-                .
-                .
+      apiVersion: '30.0'
     },
-```
-
-apex:pageタグの属性情報を設定します。
-```javascript
-  apexPageOption: {
-    'default': {               // デフォルトの設定はすべてのページに適用されます
-      "docType": "html-5.0",
-      "showHeader": false,
-      "standardStyleSheets": false
+    // SandBox環境の認証情報
+    sandbox: {
+      user: '<Your salesforce email address>',
+      pass: '<Your salesforce password>',
+      token: '<Your salesforce access token>',
+      apiVersion: '30.0'
     },
-    'topPage': {               // ページごとの設定、デフォルトにも同じ項目があればこちらが優先
-      controller: 'RemoteActionTestController'
+    // Visualforceページと静的リソースの取得先
+    retrieve: {
+      user: '<Your salesforce email address>',
+      pass: '<Your salesforce password>',
+      token: '<Your salesforce access token>',
+      apiVersion: '30.0'
     }
+  },
+  script: {
+    // JavaScriptの結合順序を指定します
+    src: [
+      src + '/js/main.js'
+    ]
+  },
+  css: {
+    // CSSの結合順序を指定します Sassはコンパイル後のcssを指定します
+    src: [
+      src + "/css/normalize.css",
+      tmp + "/css/main.css"
+    ]
   }
+  
 ```
 
-#### Install npm dependencies
-
+### Run
+Sass,Babelコンパイルを行い、依存ライブラリをvendor.js vendor.cssに、アプリケーションコードをapp.js app.cssに結合した後
+BrowserSyncを使ってローカルサーバでページを表示します。
+mock.jsにモックコードを書いておくことでJavaScript Remotingが使えないローカル環境でも動作させることができます。
 ```
-npm install 
+gulp serve
 ```
+srcディレクトリ以下のファイルに変更があった場合にはコンパイルとLiveReloadが実行されます
 
-#### Install npm dependencies
+### Deploy to Salesforce
 
+開発環境
 ```
-bower install 
-```
-#### Setup Gulp configuration
-
-```javascript
-var gulp = require('gulp');
-var zip = require('gulp-zip');
-var forceDeploy = require('gulp-jsforce-deploy');
-
-gulp.task('deploy', function() {
-  gulp.src('./pkg/**', { base: "." })
-    .pipe(zip('pkg.zip'))
-    .pipe(forceDeploy({
-      username: process.env.SF_USERNAME,
-      password: process.env.SF_PASSWORD
-      //, loginUrl: 'https://test.salesforce.com'
-      //, pollTimeout: 120*1000
-      //, pollInterval: 10*1000
-      //, version: '33.0'
-    }));
-});
+gulp deploy-dev
 ```
 
-### Build (ビルド) 
+SandBox環境
 ```
-gulp build
-```
-
-### Serve (開発サーバ)
-```
-gulp build
-```
-
-### Deploy (デプロイ)
-
-```
-gulp deploy
+gulp deploy-sand
 ```
