@@ -62,6 +62,7 @@ src/pagesにhtmlを追加します。ファイル名が直接Visualforceペー�
 ### Add script file
 src/jsにjsファイルを追加します。
 ビルド時にBablelでコンパイルされるのでES6でも記述できます
+Browserify等は使っていないのでモジュールは使用できません
 
 ### Add css and image file
 src/cssとimgに各ファイルを追加します。
@@ -114,7 +115,9 @@ Sassを利用する場合は、src/sassディレクトリに.sass .scssファイ
   script: {
     // JavaScriptの結合順序を指定します
     src: [
-      src + '/js/main.js'
+      src + '/js/main.js',
+      src + '/js/chart/*.js',
+      src + '/js/controller/*.js'
     ]
   },
   css: {
@@ -123,8 +126,7 @@ Sassを利用する場合は、src/sassディレクトリに.sass .scssファイ
       src + "/css/normalize.css",
       tmp + "/css/main.css"
     ]
-  }
-  
+  }  
 ```
 
 ### Run

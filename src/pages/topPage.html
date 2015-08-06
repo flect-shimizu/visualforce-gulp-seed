@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="ja" ng-app="app">
+<html lang="ja">
 
 <head>
   <meta charset="utf-8" ></meta>
@@ -17,9 +17,14 @@
   <script src="../../build/js/app.js"></script>
   <!-- endbuild -->
 </head>
-<body ng-controller="ctrl">
-    <div><img src="../img/gulp.png" alt=""/></div>
+<body ng-app="app" ng-controller="TopController">
+    <div id="gulp-logo">
+        <img src="../img/gulp.png" alt=""/>
+        <img src="../img/d3-icon.png" alt=""/>
+        <img src="../img/angular.jpg" alt=""/>
+    </div>
     <h1>visualforce-gulp-seed</h1>
-    <div>JavaScript Remoting Result = <span id="result" ng-bind="result"></span></div>
+    <div>JavaScript Remoting Result = <span id="result" ng-bind="result"></span>&nbsp;<button ng-click="action()">Action</button></div>
+    <div id="chart"></div>
 </body>
 </html>

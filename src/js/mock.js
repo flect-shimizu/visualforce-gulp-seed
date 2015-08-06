@@ -25,6 +25,6 @@ class MockAction {
 }
 
 var MockActions = {
-  '{!$RemoteAction.RemoteActionTestController.helloWorld}' : new MockAction('OK')
+  'RemoteActionTestController.helloWorld' : new MockAction('OK')
 }
 

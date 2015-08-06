@@ -9,7 +9,7 @@ gulp.task("script", function() {
   return merge(
     gulp.src(config.src)
     .pipe(concat(config.filename)),
-    gulp.src(config.mock))           
+    gulp.src(config.mock))
     .pipe(babel())
     .pipe(gulp.dest(config.dest))
     .pipe(browserSync.reload({stream:true}));

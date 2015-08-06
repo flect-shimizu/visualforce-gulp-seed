@@ -39,7 +39,7 @@ module.exports = {
     src: setting.src + "/pages/**",
     links: {
       css: ['../css/vendor.css', '../css/app.css'],
-      js: ['../js/vendor.js', '../js/app.js', '../js/mock.js'],
+      js: ['../js/vendor.js', '../js/mock.js', '../js/app.js'],
     },
     dest: setting.build + "/pages"
   },

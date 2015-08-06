@@ -19,7 +19,7 @@ module.exports = {
     pages: ["src/pages/*.*"],
     links: {
       css: [resourcePath + '/css/vendor.css', resourcePath + '/css/app.css'],
-      js: [resourcePath + '/js/vendor.js', resourcePath + '/js/app.js'],
+      js: [resourcePath + '/js/vendor.js', resourcePath + '/js/app.js']
     },
     pkg: {
       inputPath: inputPath,

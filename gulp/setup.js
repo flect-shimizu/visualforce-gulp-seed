@@ -51,7 +51,9 @@ module.exports = {
   script: {
     // JavaScriptの結合順序を指定します
     src: [
-      src + '/js/main.js'
+      src + '/js/main.js',
+      src + '/js/chart/*.js',
+      src + '/js/controller/*.js'
     ]
   },
   css: {

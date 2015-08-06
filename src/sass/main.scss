@@ -1,6 +1,20 @@
 body {
-  text-align:center;
+  text-align: center;
 }
+
+#gulp-logo {
+  vertical-align: middle;
+  img {
+    width: 200px;
+  }
+}
+
 #result {
-  color:greenyellow;
+  color: green;
+}
+
+#chart {
+  display: inline-block;
+  width: 400px;
+  min-width: 400px;
 }
