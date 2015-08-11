@@ -134,18 +134,29 @@ Sass,Babelコンパイルを行い、依存ライブラリをvendor.js vendor.cs
 BrowserSyncを使ってローカルサーバでページを表示します。
 mock.jsにモックコードを書いておくことでJavaScript Remotingが使えないローカル環境でも動作させることができます。
 ```
-gulp serve
+npm serve
 ```
 srcディレクトリ以下のファイルに変更があった場合にはコンパイルとLiveReloadが実行されます
+
+ビルドだけを実行する場合はbuildを実行
+```
+npm build 
+```
 
 ### Deploy to Salesforce
 
 開発環境
 ```
-gulp deploy-dev
+npm deploy-dev
 ```
 
 SandBox環境
 ```
-gulp deploy-sand
+npm deploy-sand
+```
+
+### Retvieve from Salesforce
+
+```
+npm retrieve
 ```
