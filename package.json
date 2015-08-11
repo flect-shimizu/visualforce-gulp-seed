@@ -13,8 +13,17 @@
     "SPA",
     "deploy"
   ],
+  "repository": {
+    "type": "git",
+    "url": "git@github.com:flect-shimizu/visualforce-gulp-seed.git"
+  },
   "scripts": {
-    "pretest": "./node_modules/.bin/gulp"
+    "build": "gulp build",
+    "serve": "gulp serve",
+    "pkg": "gulp pkg",
+    "deploy-dev": "gulp deploy-dev",
+    "deploy-sand": "gulp deploy-sand",
+    "retrieve": "gulp retrieve"
   },
   "files": [
     "gulpfile.js"
@@ -35,6 +44,7 @@
     "gulp-autoprefixer": "^2.1.0",
     "gulp-babel": "^5.1.0",
     "gulp-changed": "^1.1.1",
+    "gulp-cli": "^0.3.0",
     "gulp-concat": "^2.6.0",
     "gulp-filter": "^3.0.0",
     "gulp-html-replace": "^1.5.1",
